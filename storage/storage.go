@@ -20,12 +20,12 @@ func New() {
 func newPostgresDB() {
 	once.Do(func() {
 		var err error
-		dsn := "host=localhost user=go password=gorm dbname=postgres port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+		dsn := "host=localhost user=ramon password=GormPass dbname=goland port=6432 sslmode=disable"
 		db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		if err != nil {
 			log.Fatalf("Can´t no open DB %v", err)
 		}
-		fmt.Println("Conectado")
+		fmt.Println("Connect ok")
 	})
 }
 
