@@ -1,24 +1,17 @@
-version: '3'
+version: '3.8'
 services:
   db:
-    image: postgres:14.4-alpine
-    container_name: database-go
+    image: postgres:14.1-alpine
     restart: always
-    ports:
-      - "6432:5432"
     environment:
-      POSTGRES_PASSWORD: GormPass
-      POSTGRES_DB: goland
-      POSTGRES_USER: ramon
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=go
+      - POSTGRES_PASSWORD=gorm
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - '6432:5432'
     volumes:
       - db:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: pg-admin-container
-    ports:
-      - 8080:8080
-    environment:
-      PGADMIN_DEFAULT_EMAIL: correo@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: supersecret
 volumes:
   db:
+    driver: local
